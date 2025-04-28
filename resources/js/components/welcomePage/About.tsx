@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
-import { Award, MapPin, Users, Clock, ChevronRight } from "lucide-react"
+import { Award, MapPin, Users, Clock, ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 const About = () => {
@@ -71,17 +71,16 @@ const About = () => {
         },
       )
 
-      // Stats animation with bounce effect
+      // Stats animation with sharp reveal
       gsap.fromTo(
         stats.querySelectorAll(".stat-item"),
-        { opacity: 0, y: 30, scale: 0.9 },
+        { opacity: 0, y: 20 },
         {
           opacity: 1,
           y: 0,
-          scale: 1,
-          duration: 0.8,
-          stagger: 0.15,
-          ease: "back.out(1.2)",
+          duration: 0.6,
+          stagger: 0.1,
+          ease: "power2.out",
           scrollTrigger: {
             trigger: stats,
             start: "top 90%",
@@ -92,145 +91,141 @@ const About = () => {
   }, [])
 
   return (
-    <section id="about" className="relative py-24 text-white" ref={sectionRef}>
-      {/* Background image with enhanced overlay */}
-      <div
-        className="absolute inset-0 bg-cover bg-center z-0 opacity-40"
-        style={{ backgroundImage: "url('/dojo-background.png')" }}
-      ></div>
+    <section id="about" className="relative py-20 text-[#1e2025] bg-white" ref={sectionRef}>
+      {/* Sharp red line at top */}
+      <div className="absolute top-0 left-0 w-full h-1 bg-[#ff3a2f]"></div>
+      
+      {/* Subtle abstract elements */}
+      <div className="absolute bottom-40 right-10 w-64 h-64 rounded-full bg-[#ff3a2f]/[0.02] -z-0"></div>
+      <div className="absolute top-1/3 left-0 w-40 h-40 bg-[#ff3a2f]/[0.03] -z-0"
+           style={{ clipPath: "polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%)" }}></div>
+      <div className="absolute top-20 right-1/4 w-24 h-24 bg-[#ff3a2f]/[0.02] -z-0"
+           style={{ clipPath: "polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%)" }}></div>
+      <div className="absolute bottom-1/3 left-1/4 w-32 h-32 bg-[#ff3a2f]/[0.01] -z-0"
+           style={{ clipPath: "circle(50% at 50% 50%)" }}></div>
 
       <div className="container relative mx-auto px-4 z-20">
-        <div className="title-container mb-16 text-center">
-          <div className="inline-flex items-center space-x-2 mb-4">
-            <div className="h-px w-8 bg-red-500"></div>
-            <span className="text-red-400 uppercase tracking-wider text-sm font-semibold">Our Legacy</span>
-            <div className="h-px w-8 bg-red-500"></div>
+        <div className="title-container mb-16">
+          {/* Sharp, minimalist title treatment */}
+          <div className="flex items-center mb-6">
+            <div className="w-12 h-1 bg-[#ff3a2f]"></div>
+            <span className="text-[#ff3a2f] uppercase tracking-widest text-sm font-bold ml-4">OUR LEGACY</span>
           </div>
-          <h2 className="mb-4 text-4xl font-bold md:text-5xl lg:text-6xl bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-red-200">
-            About Our Dojo
+          <h2 className="text-5xl font-bold uppercase tracking-tight text-[#1e2025]">
+            ABOUT <span className="text-[#ff3a2f]">OUR DOJO</span>
           </h2>
-          <div className="mx-auto h-1 w-20 bg-gradient-to-r from-red-600 to-red-400 rounded-full mt-6"></div>
         </div>
 
-        <div className="flex flex-col items-center gap-16 md:flex-row">
-          <div className="w-full md:w-5/12" ref={imageRef}>
-            <div className="relative h-[450px] w-full overflow-hidden rounded-2xl shadow-2xl">
-              {/* Main image */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-16">
+          {/* Image column with sharp edges */}
+          <div className="md:col-span-5" ref={imageRef}>
+            <div className="relative w-full overflow-hidden shadow-lg" 
+                 style={{ clipPath: "polygon(0 0, 100% 0, 100% 95%, 0 100%)" }}>
+              {/* Main image with contrast filter */}
               <div
-                className="h-full w-full bg-cover bg-center"
-                style={{ backgroundImage: "url('Images/team/88A5D580-B43D-4916-92F9-2B8037264B27-rotated-e1724873881945.jpg')" }}
+                className="aspect-[4/5] w-full bg-cover bg-center"
+                style={{ 
+                  backgroundImage: "url('/Images/team/88A5D580-B43D-4916-92F9-2B8037264B27-rotated-e1724873881945.jpg')",
+                  filter: "contrast(1.1)" 
+                }}
               ></div>
 
-              {/* Gradient overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+              {/* Subtle diagonal overlay for white background */}
+              <div className="absolute inset-0 bg-gradient-to-tr from-[#1e2025]/20 via-transparent to-transparent"></div>
 
-              {/* Decorative elements */}
-              <div className="absolute -top-6 -left-6 w-32 h-32 rounded-full bg-gradient-to-r from-red-600/20 to-red-500/5 blur-xl"></div>
-              <div className="absolute -bottom-8 -right-8 w-40 h-40 rounded-full bg-gradient-to-r from-red-600/10 to-yellow-500/5 blur-xl"></div>
-
-              {/* Year badge */}
-              <div className="absolute top-6 right-6 bg-black/70 backdrop-blur-sm rounded-xl px-4 py-2 border border-red-500/30">
-                <span className="text-lg font-semibold text-white">Est. 1982</span>
+              {/* Year badge - sharp, angular */}
+              <div className="absolute top-0 right-0 bg-[#ff3a2f] px-6 py-3"
+                   style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 10% 100%)" }}>
+                <span className="text-white font-bold tracking-wider">EST. 1982</span>
               </div>
 
-              {/* Bottom text */}
-              <div className="absolute bottom-0 left-0 w-full p-6">
-                <div className="flex items-center space-x-2 mb-2">
-                  <Award className="text-red-500" size={20} />
-                  <h3 className="text-xl font-bold text-white">Award-Winning Training</h3>
-                </div>
-                <p className="text-gray-300 text-sm">
-                  Recognized for excellence in martial arts instruction and student development
-                </p>
-              </div>
+              {/* Bold red line accent */}
+              <div className="absolute bottom-0 left-0 w-2/3 h-2 bg-[#ff3a2f]"></div>
+            </div>
+            
+            {/* Angular decorative corner */}
+            <div className="absolute -bottom-4 -left-4 w-24 h-24">
+              <div className="w-full h-full border-b-4 border-l-4 border-[#ff3a2f]"></div>
             </div>
           </div>
 
-          <div className="w-full space-y-8 md:w-7/12" ref={contentRef}>
-            <div>
-              <h3 className="text-3xl font-bold text-white mb-6">Our Story</h3>
-              <div className="space-y-4">
-                <p className="text-gray-300 text-lg leading-relaxed">
+          {/* Content column with minimalist design */}
+          <div className="md:col-span-7" ref={contentRef}>
+            <div className="mb-10">
+              <h3 className="text-3xl font-bold uppercase tracking-tight mb-6 text-[#1e2025]">OUR STORY</h3>
+              <div className="space-y-6">
+                <p className="text-gray-700 leading-relaxed">
                   Since 1982, Seigler's Karate Center has empowered kids, teens & adults through martial arts. We
                   instill life skills like focus, discipline & respect, helping students achieve success on and off the
                   mat.
                 </p>
-                <p className="text-gray-300 text-lg leading-relaxed">
-                  Searching for the perfect martial arts school can feel like a challenge. At SKC, we make it easy for
-                  you and your family to find your best selves through martial arts. Our skilled instructors are
+                <p className="text-gray-700 leading-relaxed">
+                  At SKC, we make it easy for you and your family to find your best selves through martial arts. Our skilled instructors are
                   committed to understanding your goals and guiding you towards success in a dynamic, engaging, and
                   supportive atmosphere.
                 </p>
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-6 pt-6" ref={statsRef}>
-              <div className="stat-item rounded-xl border border-red-900/30 bg-black/60 p-6 text-center shadow-xl backdrop-blur-sm hover:border-red-600/50 transition-all duration-300 group">
-                <div className="flex flex-col items-center">
-                  <Clock
-                    className="mb-3 text-red-500 group-hover:text-red-400 transition-colors duration-300"
-                    size={28}
-                  />
-                  <span className="block text-4xl font-bold text-white mb-1 group-hover:text-red-400 transition-colors duration-300">
-                    40+
-                  </span>
-                  <span className="text-sm text-gray-400">Years Experience</span>
+            {/* Stats with sharp, minimalist design on white background */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10" ref={statsRef}>
+              <div className="stat-item">
+                <div className="flex flex-col">
+                  <Clock className="text-[#ff3a2f] mb-2" size={24} />
+                  <span className="text-3xl font-bold text-[#1e2025]">40+</span>
+                  <div className="w-8 h-1 bg-[#ff3a2f] my-2"></div>
+                  <span className="text-sm uppercase tracking-wider text-gray-600">Years</span>
                 </div>
               </div>
-              <div className="stat-item rounded-xl border border-red-900/30 bg-black/60 p-6 text-center shadow-xl backdrop-blur-sm hover:border-red-600/50 transition-all duration-300 group">
-                <div className="flex flex-col items-center">
-                  <Users
-                    className="mb-3 text-red-500 group-hover:text-red-400 transition-colors duration-300"
-                    size={28}
-                  />
-                  <span className="block text-4xl font-bold text-white mb-1 group-hover:text-red-400 transition-colors duration-300">
-                    1000+
-                  </span>
-                  <span className="text-sm text-gray-400">Happy Students</span>
+              <div className="stat-item">
+                <div className="flex flex-col">
+                  <Users className="text-[#ff3a2f] mb-2" size={24} />
+                  <span className="text-3xl font-bold text-[#1e2025]">1000+</span>
+                  <div className="w-8 h-1 bg-[#ff3a2f] my-2"></div>
+                  <span className="text-sm uppercase tracking-wider text-gray-600">Students</span>
                 </div>
               </div>
-              <div className="stat-item rounded-xl border border-red-900/30 bg-black/60 p-6 text-center shadow-xl backdrop-blur-sm hover:border-red-600/50 transition-all duration-300 group">
-                <div className="flex flex-col items-center">
-                  <MapPin
-                    className="mb-3 text-red-500 group-hover:text-red-400 transition-colors duration-300"
-                    size={28}
-                  />
-                  <span className="block text-4xl font-bold text-white mb-1 group-hover:text-red-400 transition-colors duration-300">
-                    2+
-                  </span>
-                  <span className="text-sm text-gray-400">Locations</span>
+              <div className="stat-item">
+                <div className="flex flex-col">
+                  <MapPin className="text-[#ff3a2f] mb-2" size={24} />
+                  <span className="text-3xl font-bold text-[#1e2025]">2+</span>
+                  <div className="w-8 h-1 bg-[#ff3a2f] my-2"></div>
+                  <span className="text-sm uppercase tracking-wider text-gray-600">Locations</span>
                 </div>
               </div>
-              <div className="stat-item rounded-xl border border-red-900/30 bg-black/60 p-6 text-center shadow-xl backdrop-blur-sm hover:border-red-600/50 transition-all duration-300 group">
-                <div className="flex flex-col items-center">
-                  <Award
-                    className="mb-3 text-red-500 group-hover:text-red-400 transition-colors duration-300"
-                    size={28}
-                  />
-                  <span className="block text-4xl font-bold text-white mb-1 group-hover:text-red-400 transition-colors duration-300">
-                    6+
-                  </span>
-                  <span className="text-sm text-gray-400">Programs</span>
+              <div className="stat-item">
+                <div className="flex flex-col">
+                  <Award className="text-[#ff3a2f] mb-2" size={24} />
+                  <span className="text-3xl font-bold text-[#1e2025]">6+</span>
+                  <div className="w-8 h-1 bg-[#ff3a2f] my-2"></div>
+                  <span className="text-sm uppercase tracking-wider text-gray-600">Programs</span>
                 </div>
               </div>
             </div>
 
-            <div className="pt-6">
+            {/* Sharp, angular button */}
+            <div>
               <Button
-                variant="default"
-                className="bg-gradient-to-r from-red-700 to-red-500 hover:from-red-600 hover:to-red-400 px-8 py-6 text-white font-medium shadow-[0_8px_30px_rgb(225,29,72,0.3)] rounded-xl text-lg transition-all duration-300 relative overflow-hidden group"
+                className="group bg-[#ff3a2f] hover:bg-[#ff3a2f]/90 px-8 py-4 text-white font-bold uppercase tracking-wide transition-all duration-300"
+                style={{ clipPath: "polygon(0 0, 100% 0, 95% 100%, 0% 100%)" }}
               >
-                <span className="relative z-10 flex items-center">
-                  Learn More About Our Story
-                  <ChevronRight
+                <span className="flex items-center">
+                  Learn More
+                  <ArrowRight
                     className="ml-2 group-hover:translate-x-1 transition-transform duration-300"
-                    size={20}
+                    size={18}
                   />
                 </span>
               </Button>
             </div>
           </div>
         </div>
+      </div>
+      
+      {/* Minimal location indicator adjusted for white background */}
+      <div className="absolute bottom-6 right-6 flex items-center">
+        <div className="w-2 h-2 bg-[#ff3a2f] mr-2"></div>
+        <span className="text-[#1e2025] text-sm tracking-widest uppercase">AUGUSTA, GA</span>
       </div>
     </section>
   )
