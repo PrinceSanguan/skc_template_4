@@ -1,23 +1,24 @@
-import { useEffect, useRef } from 'react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+"use client"
+
+import { useEffect, useRef } from "react"
+import gsap from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
+import { ArrowRight, Star } from "lucide-react"
 
 const Feedback = () => {
-  const sectionRef = useRef<HTMLElement>(null);
-  const particlesRef = useRef<HTMLDivElement>(null);
-  const cardsRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLElement>(null)
+  const cardsRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
+    gsap.registerPlugin(ScrollTrigger)
 
-    const section = sectionRef.current;
-    const particles = particlesRef.current;
-    const cards = cardsRef.current;
+    const section = sectionRef.current
+    const cards = cardsRef.current
 
     // Title animation
     if (section) {
       gsap.fromTo(
-        section.querySelector('.title-container'),
+        section.querySelector(".title-container"),
         { opacity: 0, y: 20 },
         {
           opacity: 1,
@@ -26,16 +27,16 @@ const Feedback = () => {
           ease: "power2.out",
           scrollTrigger: {
             trigger: section,
-            start: 'top 80%',
-          }
-        }
-      );
+            start: "top 80%",
+          },
+        },
+      )
     }
 
     // Cards animation
     if (cards) {
       gsap.fromTo(
-        cards.querySelectorAll('.testimonial-card'),
+        cards.querySelectorAll(".testimonial-card"),
         { opacity: 0, y: 30 },
         {
           opacity: 1,
@@ -45,149 +46,179 @@ const Feedback = () => {
           ease: "power2.out",
           scrollTrigger: {
             trigger: cards,
-            start: 'top 80%',
-          }
-        }
-      );
+            start: "top 80%",
+          },
+        },
+      )
     }
-
-    // Create subtle fire particles
-    if (particles) {
-      const colors = ["#ff9500", "#ff6a00", "#ff4d00", "#ff8800"];
-      const particleInterval = setInterval(() => {
-        const particle = document.createElement('div');
-        const size = Math.random() * 4 + 1; // Smaller particles
-        const color = colors[Math.floor(Math.random() * colors.length)];
-
-        particle.style.position = 'absolute';
-        particle.style.width = `${size}px`;
-        particle.style.height = `${size}px`;
-        particle.style.borderRadius = '50%';
-        particle.style.backgroundColor = color;
-        particle.style.opacity = (0.2 + Math.random() * 0.2).toString(); // Lower opacity
-        particle.style.left = `${Math.random() * 100}%`;
-        particle.style.bottom = '0';
-
-        particles.appendChild(particle);
-
-        // Gentle upward movement
-        gsap.to(particle, {
-          x: Math.random() * 30 - 15, // Less horizontal movement
-          y: -(Math.random() * 100 + 50), // Less height
-          opacity: 0,
-          duration: 3 + Math.random() * 2,
-          ease: "power1.out",
-          onComplete: () => {
-            if (particles.contains(particle)) {
-              particles.removeChild(particle);
-            }
-          }
-        });
-      }, 300);
-
-      return () => {
-        if (particleInterval) {
-          clearInterval(particleInterval);
-        }
-      };
-    }
-  }, []);
+  }, [])
 
   const testimonials = [
     {
       id: 1,
-      content: "My son has been begging to take karate for two years. He was diagnosed with ADD, hyperactive type with sensory issue components. This summer I decided to try the intro 6 week class. We had our first class and the staff was wonderful. After one week, I can already tell his confidence is growing. So far we love Seigler's!",
-      name: "Shanna Nelson Greene",
-      position: "Parent",
-      avatar: "https://randomuser.me/api/portraits/women/1.jpg"
+      content:
+        "My son has been begging to take karate for two years. He was diagnosed with ADD, hyperactive type with sensory issue components. This summer I decided to try the intro 6 week class. We had our first class and the staff was wonderful. After one week, I can already tell his confidence is growing. So far we love Seigler's!",
+      name: "SHANNA NELSON GREENE",
+      position: "PARENT",
+      avatar: "/Images/team/Default-Profile-Picture-PNG-Image-Transparent-Background.png",
     },
     {
       id: 2,
-      content: "Accountability and an awesome workout! I had the knowledge of how to loose weight and get fit, but like so many of us, I needed that push to get me started! Having a scheduled class time and training with athletes at the top of their game has motivated me to crush my goals.",
-      name: "Rachel Kimbrough-Eugene",
-      position: "Member",
-      avatar: "https://randomuser.me/api/portraits/women/2.jpg"
+      content:
+        "Accountability and an awesome workout! I had the knowledge of how to loose weight and get fit, but like so many of us, I needed that push to get me started! Having a scheduled class time and training with athletes at the top of their game has motivated me to crush my goals.",
+      name: "RACHEL KIMBROUGH-EUGENE",
+      position: "MEMBER",
+      avatar: "/Images/team/Default-Profile-Picture-PNG-Image-Transparent-Background.png",
     },
     {
       id: 3,
-      content: "Seigler's Karate Center is the BEST place to send your kids! A wonderful blend of Karate, leadership training and character building. Instructors know each child by name and are truly dedicated to their craft and the success of every child.",
-      name: "Obambi A",
-      position: "Parent",
-      avatar: "https://randomuser.me/api/portraits/men/1.jpg"
-    }
-  ];
+      content:
+        "Seigler's Karate Center is the BEST place to send your kids! A wonderful blend of Karate, leadership training and character building. Instructors know each child by name and are truly dedicated to their craft and the success of every child.",
+      name: "OBAMBI A",
+      position: "PARENT",
+      avatar: "/Images/team/Default-Profile-Picture-PNG-Image-Transparent-Background.png",
+    },
+  ]
 
   return (
-    <section ref={sectionRef} id="feedback" className="relative py-20 text-white overflow-hidden">
-      {/* Subtle particles container */}
-      <div ref={particlesRef} className="absolute inset-0 pointer-events-none z-5"></div>
+    <section ref={sectionRef} id="feedback" className="relative py-20 text-[#1e2025] bg-white">
+      {/* Sharp red line at top */}
+      <div className="absolute top-0 left-0 w-full h-1 bg-[#ff3a2f]"></div>
+      
+      {/* Subtle abstract elements */}
+      <div className="absolute bottom-1/3 right-10 w-56 h-56 rounded-full bg-[#ff3a2f]/[0.02] -z-0"></div>
+      <div className="absolute top-1/4 left-5 w-40 h-40 bg-[#ff3a2f]/[0.03] -z-0"
+           style={{ clipPath: "polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)" }}></div>
+      <div className="absolute top-20 right-1/4 w-28 h-28 bg-[#ff3a2f]/[0.02] -z-0"
+           style={{ clipPath: "polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%)" }}></div>
+      <div className="absolute bottom-20 left-1/3 w-44 h-44 bg-[#ff3a2f]/[0.01] -z-0"
+           style={{ clipPath: "circle(50% at 50% 50%)" }}></div>
 
-      <div className="container relative mx-auto px-4 z-20">
-        <div className="title-container mb-16 text-center">
-          <div className="inline-flex items-center space-x-2 mb-4">
-            <div className="h-px w-8 bg-red-500"></div>
-            <span className="text-red-400 uppercase tracking-wider text-sm font-semibold">Testimonials</span>
-            <div className="h-px w-8 bg-red-500"></div>
+      <div className="container relative mx-auto px-4">
+        <div className="title-container mb-16">
+          {/* Sharp, minimalist title treatment */}
+          <div className="flex items-center mb-6">
+            <div className="w-12 h-1 bg-[#ff3a2f]"></div>
+            <span className="text-[#ff3a2f] uppercase tracking-widest text-sm font-bold ml-4">TESTIMONIALS</span>
           </div>
-          <h2 className="mb-4 text-4xl font-bold text-white md:text-5xl">What Our Members Say</h2>
-          <p className="mx-auto max-w-2xl text-gray-300 mt-4">
-            Hear from our community about their experiences and transformations at Seigler's Karate Center
+          <h2 className="text-5xl font-bold uppercase tracking-tight mb-6 text-[#1e2025]">
+            WHAT OUR <span className="text-[#ff3a2f]">MEMBERS</span> SAY
+          </h2>
+          <p className="max-w-2xl text-gray-700 leading-relaxed">
+            Hear directly from our community about their transformative experiences training at Seigler's Karate Center
           </p>
-          <div className="mx-auto mt-6 h-1 w-20 bg-gradient-to-r from-red-600 to-red-400 rounded-full"></div>
         </div>
 
-        <div ref={cardsRef} className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {testimonials.map((testimonial) => (
-            <div
-              key={testimonial.id}
-              className="testimonial-card rounded-xl bg-black/60 p-6 shadow-xl transition-all duration-300 backdrop-blur-sm border border-red-900/20 hover:border-red-600/40 hover:shadow-red-900/5 group"
-            >
-              <div className="mb-4">
-                {[...Array(5)].map((_, i) => (
-                  <svg
-                    key={i}
-                    className="mr-1 inline-block h-5 w-5 text-red-500 group-hover:text-yellow-400 transition-colors duration-300"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                  >
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                  </svg>
-                ))}
+        {/* Redesigned testimonial layout for white background */}
+        <div ref={cardsRef} className="grid gap-8 md:grid-cols-12">
+          {/* Featured testimonial (larger) - spans 7 columns */}
+          <div className="testimonial-card md:col-span-7 relative bg-white shadow-sm p-8 border-l-2 border-[#ff3a2f]">
+            {/* Sharp quote mark */}
+            <div className="absolute -top-5 -left-2 text-8xl text-[#ff3a2f]/10 font-bold leading-none">"</div>
+            
+            {/* Clean, sharp rating */}
+            <div className="flex mb-6">
+              {[...Array(5)].map((_, i) => (
+                <Star
+                  key={i}
+                  className="mr-1 h-4 w-4 text-[#ff3a2f] fill-[#ff3a2f]"
+                />
+              ))}
+            </div>
+
+            <p className="text-gray-700 text-lg mb-8 relative z-10">
+              {testimonials[0].content}
+            </p>
+
+            {/* Sharp divider line */}
+            <div className="w-16 h-1 bg-[#ff3a2f] mb-6"></div>
+
+            <div className="flex items-center">
+              <div className="mr-4 h-14 w-14 overflow-hidden shadow-md" style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 85%)" }}>
+                <img
+                  src={testimonials[0].avatar || "/placeholder.svg?height=56&width=56&query=person"}
+                  alt={testimonials[0].name}
+                  className="h-full w-full object-cover"
+                />
               </div>
-
-              <p className="mb-6 text-gray-300">"{testimonial.content}"</p>
-
-              <div className="flex items-center">
-                <div className="mr-4 h-12 w-12 overflow-hidden rounded-full border-2 border-red-500 group-hover:border-red-400 transition-colors duration-300">
-                  <img
-                    src={testimonial.avatar || "/placeholder.svg"}
-                    alt={testimonial.name}
-                    className="h-full w-full object-cover"
-                  />
-                </div>
-                <div>
-                  <h4 className="font-semibold text-white">{testimonial.name}</h4>
-                  <p className="text-sm text-gray-400">{testimonial.position}</p>
-                </div>
+              <div>
+                <h4 className="font-bold text-[#1e2025] tracking-wide text-sm">{testimonials[0].name}</h4>
+                <p className="text-xs text-gray-600 tracking-wider">{testimonials[0].position}</p>
               </div>
             </div>
-          ))}
+            
+            {/* Angular decorative corner */}
+            <div className="absolute -bottom-2 -right-2 w-20 h-20">
+              <div className="w-full h-full border-b-2 border-r-2 border-[#ff3a2f]"></div>
+            </div>
+          </div>
+
+          {/* Right column with two stacked testimonials - spans 5 columns */}
+          <div className="md:col-span-5 space-y-8">
+            {testimonials.slice(1, 3).map((testimonial, index) => (
+              <div
+                key={testimonial.id}
+                className="testimonial-card relative bg-white shadow-sm p-6 border-l-2 border-[#ff3a2f]"
+              >
+                {/* Minimal rating */}
+                <div className="flex mb-4">
+                  {[...Array(5)].map((_, i) => (
+                    <Star
+                      key={i}
+                      className="mr-1 h-3 w-3 text-[#ff3a2f] fill-[#ff3a2f]"
+                    />
+                  ))}
+                </div>
+                
+                {/* Thin red line to separate */}
+                <div className="w-8 h-0.5 bg-[#ff3a2f] mb-4"></div>
+
+                <p className="text-gray-700 text-sm mb-4">
+                  {testimonial.content}
+                </p>
+
+                <div className="flex items-center">
+                  <div className="mr-3 h-10 w-10 overflow-hidden shadow-sm" style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 90%)" }}>
+                    <img
+                      src={testimonial.avatar || "/placeholder.svg?height=40&width=40&query=person"}
+                      alt={testimonial.name}
+                      className="h-full w-full object-cover"
+                    />
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-[#1e2025] tracking-wide text-xs">{testimonial.name}</h4>
+                    <p className="text-xs text-gray-600 tracking-wider">{testimonial.position}</p>
+                  </div>
+                </div>
+                
+                {/* Red accent line at bottom */}
+                <div className="absolute bottom-0 left-0 w-1/3 h-0.5 bg-[#ff3a2f]"></div>
+              </div>
+            ))}
+          </div>
         </div>
 
-        <div className="mt-16 text-center">
-          <button className="rounded-xl bg-gradient-to-r from-red-700 to-red-600 px-8 py-4 text-white hover:from-red-600 hover:to-red-500 transition-all duration-300 shadow-lg shadow-red-900/20 transform hover:scale-105 relative group overflow-hidden">
-            <span className="relative z-10 flex items-center justify-center">
-              See More Reviews
-              <svg className="w-5 h-5 ml-2 transform transition-transform duration-300 group-hover:translate-x-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-              </svg>
+        <div className="mt-16 flex justify-center">
+          {/* Sharp, angular button */}
+          <button
+            className="group bg-[#ff3a2f] hover:bg-[#ff3a2f]/90 px-8 py-4 text-white font-bold uppercase tracking-wide transition-all duration-300"
+            style={{ clipPath: "polygon(0 0, 100% 0, 95% 100%, 0% 100%)" }}
+          >
+            <span className="flex items-center">
+              READ ALL REVIEWS
+              <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform duration-300" size={18} />
             </span>
           </button>
         </div>
       </div>
+      
+      {/* Minimal location indicator for white background */}
+      <div className="absolute bottom-6 right-6 flex items-center">
+        <div className="w-2 h-2 bg-[#ff3a2f] mr-2"></div>
+        <span className="text-[#1e2025] text-sm tracking-widest uppercase">AUGUSTA, GA</span>
+      </div>
     </section>
-  );
-};
+  )
+}
 
-export default Feedback;
+export default Feedback
