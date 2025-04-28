@@ -1,6 +1,5 @@
 "use client"
 
-import { Link } from "@inertiajs/react"
 import { useEffect, useRef, useState } from "react"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
@@ -131,7 +130,7 @@ const Navbar = () => {
       .nav-dropdown {
         position: relative;
       }
-      
+
       .nav-dropdown-menu {
         position: absolute;
         left: 0;
@@ -149,26 +148,26 @@ const Navbar = () => {
         z-index: 50;
         padding: 4px 0;
       }
-      
+
       .nav-dropdown:hover .nav-dropdown-menu {
         opacity: 1;
         visibility: visible;
         transform: translateY(0);
       }
-      
+
       /* Delay hiding the dropdown to give users time to move to it */
       .nav-dropdown .nav-dropdown-menu {
         transition-delay: 0s;
       }
-      
+
       .nav-dropdown:hover .nav-dropdown-menu {
         transition-delay: 0s;
       }
-      
+
       .nav-dropdown-menu:hover {
         transition-delay: 0s;
       }
-      
+
       /* Dropdown item styles */
       .dropdown-item {
         display: block;
@@ -178,17 +177,17 @@ const Navbar = () => {
         transition: all 0.2s ease;
         position: relative;
       }
-      
+
       .dropdown-item:hover {
         background-color: rgba(220, 38, 38, 0.2);
         color: #f87171;
       }
-      
+
       /* Nested dropdown styles */
       .nested-dropdown {
         position: relative;
       }
-      
+
       .nested-dropdown-menu {
         position: absolute;
         left: 100%;
@@ -206,18 +205,18 @@ const Navbar = () => {
         z-index: 51;
         padding: 4px 0;
       }
-      
+
       .nested-dropdown:hover .nested-dropdown-menu {
         opacity: 1;
         visibility: visible;
         transform: translateX(0);
       }
-      
+
       /* Animated underline effect for nav items */
       .nav-link {
         position: relative;
       }
-      
+
       .nav-link::after {
         content: '';
         position: absolute;
@@ -230,21 +229,21 @@ const Navbar = () => {
         transform: translateX(-50%);
         border-radius: 2px;
       }
-      
+
       .nav-link:hover::after {
         width: 70%;
       }
-      
+
       /* Arrow indicator for dropdowns */
       .dropdown-arrow {
         margin-left: 4px;
         transition: transform 0.2s ease;
       }
-      
+
       .nav-dropdown:hover .dropdown-arrow {
         transform: rotate(180deg);
       }
-      
+
       .nested-dropdown .nested-arrow {
         position: absolute;
         right: 10px;
@@ -252,7 +251,7 @@ const Navbar = () => {
         transform: translateY(-50%);
         transition: transform 0.2s ease;
       }
-      
+
       .nested-dropdown:hover .nested-arrow {
         transform: translateY(-50%) rotate(-90deg);
       }
@@ -301,20 +300,20 @@ const Navbar = () => {
             <div className="hidden md:block">
               <div className="ml-10 flex items-center space-x-6">
                 <AnimatedElement as="div" type="fadeInDown" delay={0.2} scrollTrigger={false}>
-                  <Link
-                    href="/"
-                    className="nav-link rounded-md px-3 py-2 text-sm font-medium text-white hover:text-red-400 transition-colors"
+                  <span
+                    className="nav-link rounded-md px-3 py-2 text-sm font-medium text-white hover:text-red-400 transition-colors cursor-pointer"
+                    onClick={() => console.log('Home clicked - navigation disabled')}
                   >
                     Home
-                  </Link>
+                  </span>
                 </AnimatedElement>
 
                 {/* About Us Dropdown - Updated */}
                 <AnimatedElement as="div" type="fadeInDown" delay={0.3} scrollTrigger={false}>
                   <div className="nav-dropdown">
-                    <Link
-                      href="/about"
-                      className="nav-link rounded-md px-3 py-2 text-sm font-medium text-white hover:text-red-400 transition-colors flex items-center"
+                    <span
+                      className="nav-link rounded-md px-3 py-2 text-sm font-medium text-white hover:text-red-400 transition-colors flex items-center cursor-pointer"
+                      onClick={() => console.log('About Us clicked - navigation disabled')}
                     >
                       About Us
                       <svg
@@ -326,16 +325,16 @@ const Navbar = () => {
                       >
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                       </svg>
-                    </Link>
+                    </span>
                     <div className="nav-dropdown-menu">
-                      <Link href="/about/team" className="dropdown-item">
+                      <span className="dropdown-item cursor-pointer" onClick={() => console.log('Our Team clicked - navigation disabled')}>
                         Our Team
-                      </Link>
-                      <Link href="/about/blog" className="dropdown-item">
+                      </span>
+                      <span className="dropdown-item cursor-pointer" onClick={() => console.log('Blog clicked - navigation disabled')}>
                         Blog
-                      </Link>
+                      </span>
                       <div className="nested-dropdown">
-                        <Link href="/contact" className="dropdown-item flex justify-between items-center">
+                        <span className="dropdown-item flex justify-between items-center cursor-pointer" onClick={() => console.log('Contact clicked - navigation disabled')}>
                           <span>Contact</span>
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -346,14 +345,14 @@ const Navbar = () => {
                           >
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                           </svg>
-                        </Link>
+                        </span>
                         <div className="nested-dropdown-menu">
-                          <Link href="/locations/evans" className="dropdown-item">
+                          <span className="dropdown-item cursor-pointer" onClick={() => console.log('Evans, GA clicked - navigation disabled')}>
                             Evans, GA
-                          </Link>
-                          <Link href="/locations/grovetown" className="dropdown-item">
+                          </span>
+                          <span className="dropdown-item cursor-pointer" onClick={() => console.log('Grovetown, GA clicked - navigation disabled')}>
                             Grovetown, GA
-                          </Link>
+                          </span>
                         </div>
                       </div>
                     </div>
@@ -363,9 +362,9 @@ const Navbar = () => {
                 {/* Programs Dropdown */}
                 <AnimatedElement as="div" type="fadeInDown" delay={0.4} scrollTrigger={false}>
                   <div className="nav-dropdown">
-                    <Link
-                      href="/programs"
-                      className="nav-link rounded-md px-3 py-2 text-sm font-medium text-white hover:text-red-400 transition-colors flex items-center"
+                    <span
+                      className="nav-link rounded-md px-3 py-2 text-sm font-medium text-white hover:text-red-400 transition-colors flex items-center cursor-pointer"
+                      onClick={() => console.log('Programs clicked - navigation disabled')}
                     >
                       Programs
                       <svg
@@ -377,26 +376,26 @@ const Navbar = () => {
                       >
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                       </svg>
-                    </Link>
+                    </span>
                     <div className="nav-dropdown-menu w-60">
-                      <Link href="/programs/lil-dragons" className="dropdown-item">
+                      <span className="dropdown-item cursor-pointer" onClick={() => console.log('Lil Dragons clicked - navigation disabled')}>
                         Lil Dragons (4 — 5)
-                      </Link>
-                      <Link href="/programs/kids-karate" className="dropdown-item">
+                      </span>
+                      <span className="dropdown-item cursor-pointer" onClick={() => console.log('Kids Karate clicked - navigation disabled')}>
                         Kids Karate (6 — 10)
-                      </Link>
-                      <Link href="/programs/teens-karate" className="dropdown-item">
+                      </span>
+                      <span className="dropdown-item cursor-pointer" onClick={() => console.log('Teens Karate clicked - navigation disabled')}>
                         Teens Karate (11 — 13)
-                      </Link>
-                      <Link href="/programs/adult-kempo" className="dropdown-item">
+                      </span>
+                      <span className="dropdown-item cursor-pointer" onClick={() => console.log('Adult Kempo Karate clicked - navigation disabled')}>
                         Adult Kempo Karate (14+)
-                      </Link>
-                      <Link href="/programs/kickboxing" className="dropdown-item">
+                      </span>
+                      <span className="dropdown-item cursor-pointer" onClick={() => console.log('Kickboxing clicked - navigation disabled')}>
                         Kickboxing (14+)
-                      </Link>
-                      <Link href="/programs/jiu-jitsu" className="dropdown-item">
+                      </span>
+                      <span className="dropdown-item cursor-pointer" onClick={() => console.log('Jiu Jitsu clicked - navigation disabled')}>
                         Jiu Jitsu (14+)
-                      </Link>
+                      </span>
                     </div>
                   </div>
                 </AnimatedElement>
@@ -404,9 +403,9 @@ const Navbar = () => {
                 {/* Success Stories Dropdown */}
                 <AnimatedElement as="div" type="fadeInDown" delay={0.5} scrollTrigger={false}>
                   <div className="nav-dropdown">
-                    <Link
-                      href="/success-stories"
-                      className="nav-link rounded-md px-3 py-2 text-sm font-medium text-white hover:text-red-400 transition-colors flex items-center"
+                    <span
+                      className="nav-link rounded-md px-3 py-2 text-sm font-medium text-white hover:text-red-400 transition-colors flex items-center cursor-pointer"
+                      onClick={() => console.log('Success Stories clicked - navigation disabled')}
                     >
                       Success Stories
                       <svg
@@ -418,33 +417,33 @@ const Navbar = () => {
                       >
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                       </svg>
-                    </Link>
+                    </span>
                     <div className="nav-dropdown-menu">
-                      <Link href="/success-stories/written-reviews" className="dropdown-item">
+                      <span className="dropdown-item cursor-pointer" onClick={() => console.log('Written Reviews clicked - navigation disabled')}>
                         Written Reviews
-                      </Link>
-                      <Link href="/success-stories/video-testimonials" className="dropdown-item">
+                      </span>
+                      <span className="dropdown-item cursor-pointer" onClick={() => console.log('Video Testimonials clicked - navigation disabled')}>
                         Video Testimonials
-                      </Link>
+                      </span>
                     </div>
                   </div>
                 </AnimatedElement>
 
                 <AnimatedElement as="div" type="fadeInDown" delay={0.6} scrollTrigger={false}>
-                  <Link
-                    href="/franchise"
-                    className="nav-link rounded-md px-3 py-2 text-sm font-medium text-white hover:text-red-400 transition-colors"
+                  <span
+                    className="nav-link rounded-md px-3 py-2 text-sm font-medium text-white hover:text-red-400 transition-colors cursor-pointer"
+                    onClick={() => console.log('Franchise Info clicked - navigation disabled')}
                   >
                     Franchise Info
-                  </Link>
+                  </span>
                 </AnimatedElement>
 
                 {/* Location Dropdown */}
                 <AnimatedElement as="div" type="fadeInDown" delay={0.7} scrollTrigger={false}>
                   <div className="nav-dropdown">
-                    <Link
-                      href="/contact"
-                      className="rounded-md bg-gradient-to-r from-red-700 to-red-600 hover:from-red-600 hover:to-red-500 px-3 py-2 text-sm font-medium text-white transition-all duration-300 shadow-[0_4px_10px_rgba(220,38,38,0.3)] hover:shadow-[0_6px_15px_rgba(220,38,38,0.4)] flex items-center"
+                    <span
+                      className="rounded-md bg-gradient-to-r from-red-700 to-red-600 hover:from-red-600 hover:to-red-500 px-3 py-2 text-sm font-medium text-white transition-all duration-300 shadow-[0_4px_10px_rgba(220,38,38,0.3)] hover:shadow-[0_6px_15px_rgba(220,38,38,0.4)] flex items-center cursor-pointer"
+                      onClick={() => console.log('Select Location clicked - navigation disabled')}
                     >
                       Select Location
                       <svg
@@ -456,14 +455,14 @@ const Navbar = () => {
                       >
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                       </svg>
-                    </Link>
+                    </span>
                     <div className="nav-dropdown-menu right-0 left-auto">
-                      <Link href="/locations/evans" className="dropdown-item">
+                      <span className="dropdown-item cursor-pointer" onClick={() => console.log('Evans, GA clicked - navigation disabled')}>
                         Evans, GA
-                      </Link>
-                      <Link href="/locations/grovetown" className="dropdown-item">
+                      </span>
+                      <span className="dropdown-item cursor-pointer" onClick={() => console.log('Grovetown, GA clicked - navigation disabled')}>
                         Grovetown, GA
-                      </Link>
+                      </span>
                     </div>
                   </div>
                 </AnimatedElement>
@@ -499,12 +498,12 @@ const Navbar = () => {
       {isMenuOpen && (
         <div className="md:hidden bg-black/95 backdrop-blur-md border-b border-red-900/20 shadow-lg">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-            <Link
-              href="/"
-              className="block rounded-md px-3 py-2 text-base font-medium text-white hover:text-red-400 hover:bg-red-900/20 transition-colors"
+            <span
+              className="block rounded-md px-3 py-2 text-base font-medium text-white hover:text-red-400 hover:bg-red-900/20 transition-colors cursor-pointer"
+              onClick={() => console.log('Home clicked - navigation disabled')}
             >
               Home
-            </Link>
+            </span>
             <div>
               <button
                 onClick={() => setIsAboutDropdownOpen(!isAboutDropdownOpen)}
@@ -523,24 +522,24 @@ const Navbar = () => {
               </button>
               {isAboutDropdownOpen && (
                 <div className="pl-4 space-y-1 mt-1 border-l border-red-900/20 ml-3">
-                  <Link
-                    href="/about"
-                    className="block rounded-md px-3 py-2 text-sm font-medium text-white hover:text-red-400 hover:bg-red-900/10 transition-colors"
+                  <span
+                    className="block rounded-md px-3 py-2 text-sm font-medium text-white hover:text-red-400 hover:bg-red-900/10 transition-colors cursor-pointer"
+                    onClick={() => console.log('About Us Home clicked - navigation disabled')}
                   >
                     About Us Home
-                  </Link>
-                  <Link
-                    href="/about/team"
-                    className="block rounded-md px-3 py-2 text-sm font-medium text-white hover:text-red-400 hover:bg-red-900/10 transition-colors"
+                  </span>
+                  <span
+                    className="block rounded-md px-3 py-2 text-sm font-medium text-white hover:text-red-400 hover:bg-red-900/10 transition-colors cursor-pointer"
+                    onClick={() => console.log('Our Team clicked - navigation disabled')}
                   >
                     Our Team
-                  </Link>
-                  <Link
-                    href="/about/blog"
-                    className="block rounded-md px-3 py-2 text-sm font-medium text-white hover:text-red-400 hover:bg-red-900/10 transition-colors"
+                  </span>
+                  <span
+                    className="block rounded-md px-3 py-2 text-sm font-medium text-white hover:text-red-400 hover:bg-red-900/10 transition-colors cursor-pointer"
+                    onClick={() => console.log('Blog clicked - navigation disabled')}
                   >
                     Blog
-                  </Link>
+                  </span>
                   <div>
                     <button
                       onClick={() => setIsContactDropdownOpen(!isContactDropdownOpen)}
@@ -559,18 +558,18 @@ const Navbar = () => {
                     </button>
                     {isContactDropdownOpen && (
                       <div className="pl-4 space-y-1 mt-1 border-l border-red-900/20 ml-3">
-                        <Link
-                          href="/locations/evans"
-                          className="block rounded-md px-3 py-2 text-xs font-medium text-white hover:text-red-400 hover:bg-red-900/10 transition-colors"
+                        <span
+                          className="block rounded-md px-3 py-2 text-xs font-medium text-white hover:text-red-400 hover:bg-red-900/10 transition-colors cursor-pointer"
+                          onClick={() => console.log('Evans, GA clicked - navigation disabled')}
                         >
                           Evans, GA
-                        </Link>
-                        <Link
-                          href="/locations/grovetown"
-                          className="block rounded-md px-3 py-2 text-xs font-medium text-white hover:text-red-400 hover:bg-red-900/10 transition-colors"
+                        </span>
+                        <span
+                          className="block rounded-md px-3 py-2 text-xs font-medium text-white hover:text-red-400 hover:bg-red-900/10 transition-colors cursor-pointer"
+                          onClick={() => console.log('Grovetown, GA clicked - navigation disabled')}
                         >
                           Grovetown, GA
-                        </Link>
+                        </span>
                       </div>
                     )}
                   </div>
@@ -595,42 +594,42 @@ const Navbar = () => {
               </button>
               {isProgramsDropdownOpen && (
                 <div className="pl-4 space-y-1 mt-1 border-l border-red-900/20 ml-3">
-                  <Link
-                    href="/programs/lil-dragons"
-                    className="block rounded-md px-3 py-2 text-sm font-medium text-white hover:text-red-400 hover:bg-red-900/10 transition-colors"
+                  <span
+                    className="block rounded-md px-3 py-2 text-sm font-medium text-white hover:text-red-400 hover:bg-red-900/10 transition-colors cursor-pointer"
+                    onClick={() => console.log('Lil Dragons clicked - navigation disabled')}
                   >
                     Lil Dragons (4 — 5)
-                  </Link>
-                  <Link
-                    href="/programs/kids-karate"
-                    className="block rounded-md px-3 py-2 text-sm font-medium text-white hover:text-red-400 hover:bg-red-900/10 transition-colors"
+                  </span>
+                  <span
+                    className="block rounded-md px-3 py-2 text-sm font-medium text-white hover:text-red-400 hover:bg-red-900/10 transition-colors cursor-pointer"
+                    onClick={() => console.log('Kids Karate clicked - navigation disabled')}
                   >
                     Kids Karate (6 — 10)
-                  </Link>
-                  <Link
-                    href="/programs/teens-karate"
-                    className="block rounded-md px-3 py-2 text-sm font-medium text-white hover:text-red-400 hover:bg-red-900/10 transition-colors"
+                  </span>
+                  <span
+                    className="block rounded-md px-3 py-2 text-sm font-medium text-white hover:text-red-400 hover:bg-red-900/10 transition-colors cursor-pointer"
+                    onClick={() => console.log('Teens Karate clicked - navigation disabled')}
                   >
                     Teens Karate (11 — 13)
-                  </Link>
-                  <Link
-                    href="/programs/adult-kempo"
-                    className="block rounded-md px-3 py-2 text-sm font-medium text-white hover:text-red-400 hover:bg-red-900/10 transition-colors"
+                  </span>
+                  <span
+                    className="block rounded-md px-3 py-2 text-sm font-medium text-white hover:text-red-400 hover:bg-red-900/10 transition-colors cursor-pointer"
+                    onClick={() => console.log('Adult Kempo Karate clicked - navigation disabled')}
                   >
                     Adult Kempo Karate (14+)
-                  </Link>
-                  <Link
-                    href="/programs/kickboxing"
-                    className="block rounded-md px-3 py-2 text-sm font-medium text-white hover:text-red-400 hover:bg-red-900/10 transition-colors"
+                  </span>
+                  <span
+                    className="block rounded-md px-3 py-2 text-sm font-medium text-white hover:text-red-400 hover:bg-red-900/10 transition-colors cursor-pointer"
+                    onClick={() => console.log('Kickboxing clicked - navigation disabled')}
                   >
                     Kickboxing (14+)
-                  </Link>
-                  <Link
-                    href="/programs/jiu-jitsu"
-                    className="block rounded-md px-3 py-2 text-sm font-medium text-white hover:text-red-400 hover:bg-red-900/10 transition-colors"
+                  </span>
+                  <span
+                    className="block rounded-md px-3 py-2 text-sm font-medium text-white hover:text-red-400 hover:bg-red-900/10 transition-colors cursor-pointer"
+                    onClick={() => console.log('Jiu Jitsu clicked - navigation disabled')}
                   >
                     Jiu Jitsu (14+)
-                  </Link>
+                  </span>
                 </div>
               )}
             </div>
@@ -652,33 +651,33 @@ const Navbar = () => {
               </button>
               {isSuccessStoriesDropdownOpen && (
                 <div className="pl-4 space-y-1 mt-1 border-l border-red-900/20 ml-3">
-                  <Link
-                    href="/success-stories"
-                    className="block rounded-md px-3 py-2 text-sm font-medium text-white hover:text-red-400 hover:bg-red-900/10 transition-colors"
+                  <span
+                    className="block rounded-md px-3 py-2 text-sm font-medium text-white hover:text-red-400 hover:bg-red-900/10 transition-colors cursor-pointer"
+                    onClick={() => console.log('All Success Stories clicked - navigation disabled')}
                   >
                     All Success Stories
-                  </Link>
-                  <Link
-                    href="/success-stories/written-reviews"
-                    className="block rounded-md px-3 py-2 text-sm font-medium text-white hover:text-red-400 hover:bg-red-900/10 transition-colors"
+                  </span>
+                  <span
+                    className="block rounded-md px-3 py-2 text-sm font-medium text-white hover:text-red-400 hover:bg-red-900/10 transition-colors cursor-pointer"
+                    onClick={() => console.log('Written Reviews clicked - navigation disabled')}
                   >
                     Written Reviews
-                  </Link>
-                  <Link
-                    href="/success-stories/video-testimonials"
-                    className="block rounded-md px-3 py-2 text-sm font-medium text-white hover:text-red-400 hover:bg-red-900/10 transition-colors"
+                  </span>
+                  <span
+                    className="block rounded-md px-3 py-2 text-sm font-medium text-white hover:text-red-400 hover:bg-red-900/10 transition-colors cursor-pointer"
+                    onClick={() => console.log('Video Testimonials clicked - navigation disabled')}
                   >
                     Video Testimonials
-                  </Link>
+                  </span>
                 </div>
               )}
             </div>
-            <Link
-              href="/franchise"
-              className="block rounded-md px-3 py-2 text-base font-medium text-white hover:text-red-400 hover:bg-red-900/20 transition-colors"
+            <span
+              className="block rounded-md px-3 py-2 text-base font-medium text-white hover:text-red-400 hover:bg-red-900/20 transition-colors cursor-pointer"
+              onClick={() => console.log('Franchise Info clicked - navigation disabled')}
             >
               Franchise Info
-            </Link>
+            </span>
             <div>
               <button
                 onClick={() => setIsMainContactDropdownOpen(!isMainContactDropdownOpen)}
@@ -697,18 +696,18 @@ const Navbar = () => {
               </button>
               {isMainContactDropdownOpen && (
                 <div className="pl-4 space-y-1 mt-1 border-l border-red-900/20 ml-3">
-                  <Link
-                    href="/locations/evans"
-                    className="block rounded-md px-3 py-2 text-sm font-medium text-white hover:text-red-400 hover:bg-red-900/10 transition-colors"
+                  <span
+                    className="block rounded-md px-3 py-2 text-sm font-medium text-white hover:text-red-400 hover:bg-red-900/10 transition-colors cursor-pointer"
+                    onClick={() => console.log('Evans, GA clicked - navigation disabled')}
                   >
                     Evans, GA
-                  </Link>
-                  <Link
-                    href="/locations/grovetown"
-                    className="block rounded-md px-3 py-2 text-sm font-medium text-white hover:text-red-400 hover:bg-red-900/10 transition-colors"
+                  </span>
+                  <span
+                    className="block rounded-md px-3 py-2 text-sm font-medium text-white hover:text-red-400 hover:bg-red-900/10 transition-colors cursor-pointer"
+                    onClick={() => console.log('Grovetown, GA clicked - navigation disabled')}
                   >
                     Grovetown, GA
-                  </Link>
+                  </span>
                 </div>
               )}
             </div>
